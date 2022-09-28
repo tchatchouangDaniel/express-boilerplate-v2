@@ -1,13 +1,13 @@
-import express, { Application, Request, Response, NextFunction } from 'express';
+import express, { Application } from 'express';
+import routes from './routes/api';
+import morgan from 'morgan';
 
 // Boot express
 const app: Application = express();
-const port = 5000;
+const port = 3000;
 
-// Application routing
-app.use('/', (req: Request, res: Response, next: NextFunction) => {
-  res.status(200).send({ data: 'Hello from  Troyes AS' });
-});
+app.use(morgan('dev'));
+app.use('/api', routes);
 
 // Start server
 app.listen(port, () => console.log(`Server is listening on port ${port}!`));
